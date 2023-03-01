@@ -1,8 +1,8 @@
-﻿@model List<Book>
+﻿@model BooksViewModel
 
 <h1>Welcome to the bookstore</h1>
 
-@foreach (Book b in Model)
+@foreach (Book b in Model.Books)
 {
     <h3>@b.Title</h3>
     <ul>
@@ -15,3 +15,5 @@
         <li>Price: @b.Price</li>
     </ul>
 }
+
+<div page-model="@Model.PageInfo" page-action="Index"></div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mission09_jbuhler4.Models;
+using Mission09_jbuhler4.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,24 @@ namespace Mission09_jbuhler4.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index()
+        public IActionResult Index(int pageNum = 1)
         {
-            var books = repo.Books.ToList();
-            return View(books);
+            int pageSize = 5;
+
+            var x = new BooksViewModel
+            {
+                Books = repo.Books
+                .Skip(pageSize * (pageNum - 1))
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBooks = repo.Books.Count(),
+                    CurrentPage = pageNum,
+                    BooksPerPage = pageSize
+                }
+            };
+            return View(x);
         }
     }
 }
