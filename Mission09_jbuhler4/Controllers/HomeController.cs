@@ -16,13 +16,15 @@ namespace Mission09_jbuhler4.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             int pageSize = 5;
 
             var x = new BooksViewModel
             {
                 Books = repo.Books
+                .Where(b => b.Category == category || category == null)
+                .OrderBy(b => b.Title)
                 .Skip(pageSize * (pageNum - 1))
                 .Take(pageSize),
 
