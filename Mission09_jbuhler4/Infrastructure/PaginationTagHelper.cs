@@ -27,6 +27,11 @@ namespace Mission09_jbuhler4.Infrastructure
 
         public PageInfo PageModel { get; set; }
         public string PageAction { get; set; }
+        public string PageClass { get; set; }
+        public bool PageClassEnabled { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
+
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -38,6 +43,12 @@ namespace Mission09_jbuhler4.Infrastructure
                 TagBuilder tb = new TagBuilder("a");
 
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+
+                if(PageClassEnabled)
+                {
+                    tb.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
+                }
+                tb.AddCssClass(PageClass);
                 tb.InnerHtml.Append(i.ToString());
 
                 final.InnerHtml.AppendHtml(tb);

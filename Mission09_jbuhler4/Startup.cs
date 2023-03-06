@@ -52,6 +52,11 @@ namespace Mission09_jbuhler4
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "Page",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index" });
+
                 endpoints.MapDefaultControllerRoute();
             });
         }
