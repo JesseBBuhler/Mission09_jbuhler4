@@ -22,17 +22,23 @@ namespace Mission09_jbuhler4.Pages
         public string ReturnUrl { get; set; }
         public void OnGet(string returnUrl)
         {
+            //if there is no return url then redirect to the home page
             ReturnUrl = returnUrl ?? "/";
+            //if a basket does not yet exist then create a basket
             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
 
         public IActionResult OnPost(int bookId, string returnUrl)
         {
+            //grab the book that was selected
             Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
+            //if a basket does not yet exist then create a basket
             basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
+            //add the book to the basket with a quantity of 1
             basket.AddItem(b, 1);
             HttpContext.Session.SetJson("basket", basket);
 
+            //return the user back to the page that they were on before
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
     }

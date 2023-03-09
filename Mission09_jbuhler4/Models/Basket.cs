@@ -11,10 +11,12 @@ namespace Mission09_jbuhler4.Models
 
         public void AddItem(Book bk, int qty)
         {
+            //look to see if a line item already exists of this book
             BasketLineItem line = Items
                 .Where(b => b.Book.BookId == bk.BookId)
                 .FirstOrDefault();
 
+            //if there is no line item for this book then create one. Otherwise increase the quantity
             if (line == null)
             {
                 Items.Add(new BasketLineItem

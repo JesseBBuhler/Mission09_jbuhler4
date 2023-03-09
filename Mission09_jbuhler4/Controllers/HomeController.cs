@@ -10,14 +10,16 @@ namespace Mission09_jbuhler4.Controllers
 {
     public class HomeController : Controller
     {
+        //initializing repository
         private IBookstoreRepository repo;
-
         public HomeController(IBookstoreRepository temp)
         {
             repo = temp;
         }
+
         public IActionResult Index(string category, int pageNum = 1)
         {
+            //page size is 3 because I think it fits on the screen better and minimizes scrolling
             int pageSize = 3;
 
             var x = new BooksViewModel

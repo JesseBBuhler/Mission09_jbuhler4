@@ -36,21 +36,28 @@ namespace Mission09_jbuhler4.Infrastructure
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper uh = uhf.GetUrlHelper(vc);
+            //creating the div that will eventually contain all of the page links
             TagBuilder final = new TagBuilder("div");
 
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
+                //creating the a tag
                 TagBuilder tb = new TagBuilder("a");
 
+                //adding destination to a tag
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
 
+                //styling a tag
                 if(PageClassEnabled)
                 {
                     tb.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                 }
                 tb.AddCssClass(PageClass);
+                
+                //adding page number as the content of the a tag
                 tb.InnerHtml.Append(i.ToString());
 
+                //adding a tag to the div
                 final.InnerHtml.AppendHtml(tb);
             }
 

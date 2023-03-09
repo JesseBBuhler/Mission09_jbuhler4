@@ -11,6 +11,7 @@ namespace Mission09_jbuhler4.Components
     {
         private IBookstoreRepository repo { get; set; }
 
+        //connecting repository to the model so that the default category component view can access the categories it needs to display
         public CategoryViewComponent(IBookstoreRepository temp)
         {
             repo = temp;
@@ -18,6 +19,7 @@ namespace Mission09_jbuhler4.Components
 
         public IViewComponentResult Invoke()
         {
+            //storing currently selected category in the viewbag so it can be highlighted
             ViewBag.SelectedCategory = RouteData?.Values["category"];
 
             var category = repo.Books

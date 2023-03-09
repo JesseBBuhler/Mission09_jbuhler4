@@ -6,7 +6,7 @@
         left: 0px;
         transform: rotate(0);
     }
-
+    /*Initial tilt to the left makes it look like the book is winding up and preparing for the animation*/
     20% {
         left: 0px;
         transform: rotate(-50deg);
