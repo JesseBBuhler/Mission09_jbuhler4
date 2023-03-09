@@ -37,6 +37,9 @@ namespace Mission09_jbuhler4
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
 
             services.AddRazorPages();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +52,7 @@ namespace Mission09_jbuhler4
 
             //use the wwwroot folder
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

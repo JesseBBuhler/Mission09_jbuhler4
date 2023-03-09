@@ -18,7 +18,7 @@ namespace Mission09_jbuhler4.Controllers
         }
         public IActionResult Index(string category, int pageNum = 1)
         {
-            int pageSize = 5;
+            int pageSize = 3;
 
             var x = new BooksViewModel
             {
@@ -30,7 +30,9 @@ namespace Mission09_jbuhler4.Controllers
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBooks = repo.Books.Count(),
+                    TotalNumBooks = (category == null
+                    ? repo.Books.Count()
+                    : repo.Books.Where(x => x.Category == category).Count()),
                     CurrentPage = pageNum,
                     BooksPerPage = pageSize
                 }

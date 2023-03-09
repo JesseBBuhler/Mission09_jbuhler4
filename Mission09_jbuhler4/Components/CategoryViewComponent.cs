@@ -18,6 +18,8 @@ namespace Mission09_jbuhler4.Components
 
         public IViewComponentResult Invoke()
         {
+            ViewBag.SelectedCategory = RouteData?.Values["category"];
+
             var category = repo.Books
                 .Select(x => x.Category)
                 .Distinct()

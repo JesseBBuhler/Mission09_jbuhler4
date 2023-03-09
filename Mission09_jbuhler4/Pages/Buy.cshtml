@@ -15,23 +15,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Dummy</td>
-            <td>Data</td>
-            <td>For</td>
-            <td>Table</td>
-        </tr>
-        <tr>
-            <td>Dummy</td>
-            <td>Data</td>
-            <td>For</td>
-            <td>Table</td>
-        </tr>
+        @foreach(var i in Model.basket.Items)
+            {
+                <tr>
+                    <td>@i.Book.Title</td>
+                    <td>@i.Book.Price</td>
+                    <td>@i.Quantity</td>
+                    <td>@(i.Book.Price * i.Quantity)</td>
+                </tr>
+            }
     </tbody>
     <tfoot>
         <tr>
             <td colspan="3">Total:</td>
-            <td>Dummy total</td>
+            <td>@Model.basket.CalculateTotal().ToString("c")</td>
         </tr>
     </tfoot>
 </table>
