@@ -1,0 +1,36 @@
+﻿
+
+/* The animation code */
+@keyframes example {
+    0% {
+        left: 0px;
+        transform: rotate(0);
+    }
+
+    20% {
+        left: 0px;
+        transform: rotate(-50deg);
+    }
+
+    30% {
+        left: 0px;
+        transform: rotate(30deg);
+    }
+
+    75% {
+        transform: rotate(50deg);
+        left: 75px;
+    }
+
+    100% {
+        left: 0px;
+        transform: rotate(0);
+    }
+}
+
+/* The element to apply the animation to */
+.animate-left-right {
+    position: relative;
+    animation-name: example;
+    animation-duration: 2s;
+}
