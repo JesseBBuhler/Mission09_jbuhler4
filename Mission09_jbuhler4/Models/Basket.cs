@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Mission09_jbuhler4.Models
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
 
-        public void AddItem(Book bk, int qty)
+        public virtual void AddItem(Book bk, int qty)
         {
             //look to see if a line item already exists of this book
             BasketLineItem line = Items
@@ -37,10 +38,21 @@ namespace Mission09_jbuhler4.Models
 
             return sum;
         }
+
+        public virtual void RemoveItem(Book bk)
+        {
+            Items.RemoveAll(x => x.Book.BookId == bk.BookId);
+        }
+
+        public virtual void ClearBasket()
+        {
+            Items.Clear();
+        }
     }
 
     public class BasketLineItem
     {
+        [Key]
         public int LineID { get; set; }
         public Book Book { get; set; }
         public int Quantity { get; set; }
