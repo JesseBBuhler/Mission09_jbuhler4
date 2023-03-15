@@ -3,27 +3,27 @@
 /* The animation code */
 @keyframes example {
     0% {
-        left: 0px;
+        transform: translate(0);
         transform: rotate(0);
     }
     /*Initial tilt to the left makes it look like the book is winding up and preparing for the animation*/
     20% {
-        left: 0px;
+        transform: translate(0);
         transform: rotate(-50deg);
     }
 
     30% {
-        left: 0px;
+        transform: translate(0);
         transform: rotate(30deg);
     }
 
     75% {
         transform: rotate(50deg);
-        left: 75px;
+        transform: translate(75px);
     }
 
     100% {
-        left: 0px;
+        transform: translate(0);
         transform: rotate(0);
     }
 }
